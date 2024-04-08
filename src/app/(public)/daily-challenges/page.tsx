@@ -52,7 +52,7 @@ export default function Page() {
   }
 
   return (
-    <div className='px-24 min-h-screen bg-gradient-to-b from-black via-red-950/60 to-black'>
+    <div className='px-24 bg-gradient-to-b from-black via-red-950/60 to-black'>
       <Toaster />
       <div>
         <h1 className='text-6xl font-semibold'>

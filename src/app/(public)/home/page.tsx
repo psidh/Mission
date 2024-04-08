@@ -1,11 +1,12 @@
 import Link from 'next/link';
 
 export default function Home() {
+
   return (
     <div className='bg-black text-[#b7b7b7] flex flex-col justify-center items-center'>
       <div className='mt-12 mx-8 w-[80%]'>
         <h1 className='text-6xl font-bold mb-8 text-teal-400'>
-          Welcome, Agent
+          Welcome to Intercept, Agent
         </h1>
         <div>
           <p className='text-xl mb-4'>
