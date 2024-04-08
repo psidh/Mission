@@ -21,7 +21,7 @@ export default function Navbar() {
       <div className='bg-transparent px-24 backdrop-blur-xl bg-opacity-20 flex justify-between py-12 text-lg'>
         <h1 className='flex justify-between items-center'>Intercept</h1>
         <div className='space-x-8 flex justify-between items-center'>
-          <Link href={'/'} className=''>
+          <Link href={'/home'} className=''>
             Home
           </Link>
           <Link

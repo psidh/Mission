@@ -25,7 +25,7 @@ export default function Login() {
 
       console.log(response.data);
       toast.success('Verified Successfully');
-      router.push('/auth/verifyEmail');
+      router.push('/home')
     } catch (error: any) {
       console.log('SignUp failed');
     }

@@ -3,5 +3,6 @@ export default interface Mission {
     title: string;
     description: string;
     deadline: string;
+    isDone: boolean;
     // Add other properties as needed
   }

@@ -26,7 +26,7 @@ export default function SignPage() {
 
       console.log(response.data);
       toast.success('Success | 200');
-      router.push('/auth/login');
+      router.push('/auth/verifyEmail');
     } catch (error: any) {
       console.log('SignUp failed');
     }

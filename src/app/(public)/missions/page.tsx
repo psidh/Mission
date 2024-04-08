@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { BsCloudArrowDownFill } from "react-icons/bs";
 import Mission from '@/interfaces/Mission';
 
 
@@ -18,7 +17,7 @@ export default function Page() {
             ...mission,
             deadline: new Date(mission.deadline).toLocaleDateString(),
           }))
-        );
+        );      
       } catch (error) {
         console.error('Error fetching missions:', error);
       }
@@ -52,6 +51,31 @@ export default function Page() {
     }
   }
 
+  async function completeMission(missionId: string) {
+    try {
+      const response = await fetch(`/api/missions`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mission: missionId }),
+      });
+
+      if (response.ok) {
+        toast.success('Mission Updated successfully');
+        setMissions((prevMissions) =>
+          prevMissions.filter((mission) => mission._id !== missionId)
+        );
+      } else {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage || 'Failed to updated mission');
+      }
+    } catch (error) {
+      console.error('Error updated mission:', error);
+      toast.error('Failed to updated mission');
+    }
+  }
+
   return (
     <div className='px-24 min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
       <Toaster />
@@ -81,19 +105,26 @@ export default function Page() {
           missions.map((mission, index) => (
             <div
               key={index}
-              className='w-full mt-12 p-4 border border-teal-500/30 rounded-xl flex flex-row items-center justify-between'
+              className='w-full mt-12 p-4 border border-teal-500/30 rounded-xl flex flex-col items-center justify-between'
             >
               <h1 className='text-3xl mb-2'>{mission.title}</h1>
-              <h2 className='text-2xl text-white/50 mb-2'>
-                Objectives: {mission.description}
+              <h2 className='text-xl text-white/50 mb-2'>
+              {mission.description}
               </h2>
               <h3 className='text-xl'>Deadline: {mission.deadline}</h3>
+              <h4 className='text-xl'>Status: {mission.isDone}</h4>
               <div>
                 <button
                   onClick={() => deleteMission(mission._id)}
                   className='py-2 px-6 bg-red-700 border border-red-600 rounded-lg font-semibold'
                 >
                   Abort
+                </button>
+                <button
+                  onClick={() => deleteMission(mission._id)}
+                  className='py-2 px-6 mx-2 bg-green-700 border border-green-600 rounded-lg font-semibold'
+                >
+                  Accomplished
                 </button>
               </div>
             </div>

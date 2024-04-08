@@ -24,7 +24,6 @@ export async function GET(request: NextRequest) {
     }
 
     const missions = await Mission.find({ user: userID });
-    
 
     return NextResponse.json({ data: missions }, { status: 200 });
   } catch (error: any) {
@@ -46,7 +45,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const { title, description, isDone, deadline, category } = body;
+    const { title, description, deadline, category } = body;
 
     const user = await User.findById(userID);
 
@@ -59,7 +58,7 @@ export async function POST(request: NextRequest) {
       description,
       deadline: new Date(deadline),
       category,
-      isDone: isDone || false,
+      isDone: false,
       user: user._id,
     });
 
@@ -76,12 +75,43 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function PUT(request: NextRequest) {
+  try {
+    const { mission } = await request.json();
+
+    if (!mission) {
+      return NextResponse.json(
+        { error: "Mission ID doesn't exist" },
+        { status: 400 }
+      );
+    }
+
+    const missionToUpdate = await Mission.findById(mission);
+
+    if (!missionToUpdate) {
+      return NextResponse.json({ error: 'Mission not found' }, { status: 404 });
+    }
+
+    // Update the mission's isDone property
+    missionToUpdate.isDone = true;
+
+    // Save the updated mission
+    await missionToUpdate.save();
+
+    return NextResponse.json(
+      { message: 'Mission updated successfully', mission: missionToUpdate },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error('Error updating mission:', error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
 export async function DELETE(request: NextRequest) {
   try {
-    
-    const {mission}  = await request.json();
-    console.log("logged :" + mission);
-    
+    const { mission } = await request.json();
+    console.log('logged :' + mission);
 
     if (!mission) {
       return NextResponse.json(
@@ -95,7 +125,7 @@ export async function DELETE(request: NextRequest) {
     if (!missionToDelete) {
       return NextResponse.json({ error: 'Mission not found' }, { status: 404 });
     }
-    
+
     // important
     await Mission.deleteOne(missionToDelete);
 
