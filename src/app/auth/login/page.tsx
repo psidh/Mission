@@ -40,7 +40,7 @@ export default function Login() {
   }, [user]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950 to-black'>
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Decrypting credentials...' : 'Welcome back Agent'}
       </h1>

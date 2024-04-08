@@ -21,7 +21,7 @@ export default function SignPage() {
       const response = await axios({
         method: 'post',
         url: '/api/users/signup',
-        data: user
+        data: user,
       });
 
       console.log(response.data);
@@ -41,7 +41,7 @@ export default function SignPage() {
   }, [user]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-emerald-950 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950 to-black'>
       <Toaster />
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Encoding to Server...' : 'Become Top 1%'}
