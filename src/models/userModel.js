@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,
     verifyTokenExpiry: Date,
+    missions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Mission',
+    }]
 })
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);

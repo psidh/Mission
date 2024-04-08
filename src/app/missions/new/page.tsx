@@ -9,6 +9,7 @@ export default function Login() {
     title: '',
     description: '',
     deadline: '',
+    category: '', // Added category field for the dropdown
   });
 
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Login() {
     try {
       setLoading(true);
       toast.loading('Adding Mission...');
-      const response = await axios.post('/api/missions', mission);
+      const response = await axios.post('/api/missions/add', mission);
 
       console.log(response.data);
       toast.success('Mission Added Successfully');
@@ -33,8 +34,8 @@ export default function Login() {
   };
 
   useEffect(() => {
-    const { title, description, deadline } = mission;
-    if (title && description && deadline) {
+    const { title, description, deadline, category } = mission;
+    if (title && description && deadline && category) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -46,7 +47,7 @@ export default function Login() {
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Adding Mission...' : 'New Mission'}
       </h1>
-      <div className='flex flex-col items-start justify-start'>
+      <div className='flex flex-col items-start justify-start w-[65%]'>
         <label htmlFor='title' className='text-2xl my-4 text-teal-400'>
           Title
         </label>
@@ -57,7 +58,7 @@ export default function Login() {
           type='text'
           title='Title'
           placeholder='Title'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none w-full'
         />
         <label htmlFor='description' className='text-2xl my-4 text-teal-400'>
           Description
@@ -72,7 +73,7 @@ export default function Login() {
           cols={25}
           title='Description'
           placeholder='Description'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none w-full'
         />
         <label htmlFor='deadline' className='text-2xl my-4 text-teal-400'>
           Deadline
@@ -84,8 +85,26 @@ export default function Login() {
           type='date'
           title='Deadline'
           placeholder='Deadline'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 border border-teal-800 rounded-lg focus:outline-none w-full'
         />
+        <label htmlFor='category' className='text-2xl my-4 text-teal-400'>
+          Category
+        </label>
+        <select
+          id='category'
+          value={mission.category}
+          onChange={(e) => setMission({ ...mission, category: e.target.value })}
+          className='bg-transparent py-4 px-20 border border-teal-800 rounded-lg focus:outline-none w-full'
+        >
+          <option value=''>Select Category</option>
+          <option value='Web'>Web</option>
+          <option value='Cloud'>Cloud</option>
+          <option value='DevOps'>DevOps</option>
+          <option value='ML'>ML</option>
+          <option value='App'>App</option>
+          <option value='IT'>IT</option>
+          <option value='Security'>Security</option>
+        </select>
       </div>
 
       <button
