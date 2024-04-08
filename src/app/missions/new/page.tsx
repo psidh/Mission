@@ -20,7 +20,7 @@ export default function Login() {
     try {
       setLoading(true);
       toast.loading('Adding Mission...');
-      const response = await axios.post('/api/missions/add', mission);
+      const response = await axios.post('/api/missions', mission);
 
       console.log(response.data);
       toast.success('Mission Added Successfully');
