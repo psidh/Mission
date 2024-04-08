@@ -21,7 +21,8 @@ export async function POST(request: NextRequest) {
         error: 'Invalid token details',
       });
     }
-
+    console.log(user);
+    
     user.isVerified = true;
     user.verifyToken = undefined;
     user.verifyTokenExpiry = undefined;

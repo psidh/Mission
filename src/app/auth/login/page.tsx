@@ -13,22 +13,31 @@ export default function Login() {
   const [isButtonDisabled, setButtonDisabled] = useState<Boolean>(true);
   const [isLoading, setLoading] = useState<Boolean>(false);
 
-  const onSignUp = async () => {
+  const onLogin = async () => {
     try {
       setLoading(true);
-      const response = await axios.post('/api/users/login');
+      toast.loading('Retriving Data...');
+      const response = await axios({
+        method: 'post',
+        url: '/api/users/login',
+        data: user,
+      });
 
       console.log(response.data);
       toast.success('Verified Successfully');
-      router.push('/login');
+      setTimeout(() => {
+        router.push('/auth/verifyEmail');
+      }, 2000);
     } catch (error: any) {
       console.log('SignUp failed');
     }
   };
 
   useEffect(() => {
-    if (user.email > 0 && user.password > 0 && user.username > 0) {
+    if (user.email !== '' && user.password !== '' && user.username !== '') {
       setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
     }
   }, [user]);
 
@@ -44,7 +53,7 @@ export default function Login() {
         <input
           id='email'
           value={user.email}
-          onChange={(e) => ({ ...user, email: e.target.value })}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
           type='text'
           title='Email'
           placeholder='Email'
@@ -56,21 +65,24 @@ export default function Login() {
         <input
           id='password'
           value={user.password}
-          onChange={(e) => ({ ...user, password: e.target.value })}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
           type='text'
           title='password'
           placeholder='password'
           className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
         />
       </div>
-      
+
       {isButtonDisabled ? (
-        <button className='bg-teal-950 text-teal-700 text-center py-4 px-20 pl-4transition-all duration-200 rounded-lg my-4 font-bold'>
+        <button className='bg-teal-950 text-teal-700 text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'>
           Disabled
         </button>
       ) : (
-        <button className='bg-teal-950 text-white text-center py-4 px-20 pl-4 hover:bg-teal-600 transition-all duration-200 rounded-lg my-4 font-bold'>
-          Inject to Server
+        <button
+          onClick={onLogin}
+          className='bg-teal-950 text-white hover:bg-black border border-teal-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
+        >
+          Run the Server
         </button>
       )}
     </div>
