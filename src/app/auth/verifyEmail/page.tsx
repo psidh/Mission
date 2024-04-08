@@ -41,7 +41,7 @@ export default function page() {
   }, [token]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
       <Toaster />
       <button
         onClick={verifyEmail}

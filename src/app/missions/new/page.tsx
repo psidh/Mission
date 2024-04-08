@@ -19,12 +19,11 @@ export default function Login() {
   const addMission = async () => {
     try {
       setLoading(true);
-      toast.loading('Adding Mission...');
       const response = await axios.post('/api/missions', mission);
 
       console.log(response.data);
       toast.success('Mission Added Successfully');
-      router.push('/missions'); 
+      router.push('/missions');
     } catch (error) {
       console.error('Failed to add mission:', error);
       toast.error('Failed to add mission');
@@ -43,7 +42,7 @@ export default function Login() {
   }, [mission]);
 
   return (
-    <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-teal-950 to-black'>
+    <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-teal-950/60 to-black'>
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Adding Mission...' : 'New Mission'}
       </h1>

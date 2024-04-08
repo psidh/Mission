@@ -2,17 +2,23 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { BsCloudArrowDownFill } from "react-icons/bs";
+import Mission from '@/interfaces/Mission';
+
 
 export default function Page() {
-  const [missions, setMissions] = useState([]);
+  const [missions, setMissions] = useState<Mission[]>([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('/api/missions');
-
-        console.log('API Response:', response.data);
-        setMissions(response.data.data);
+        const response = await axios.get<{ data: Mission[] }>('/api/missions');
+        setMissions(
+          response.data.data.map((mission) => ({
+            ...mission,
+            deadline: new Date(mission.deadline).toLocaleDateString(),
+          }))
+        );
       } catch (error) {
         console.error('Error fetching missions:', error);
       }
@@ -21,21 +27,21 @@ export default function Page() {
     fetchData();
   }, []);
 
-  const [mission, setMission] = useState();
-
-  async function deleteMission(missionId: any) {
+  async function deleteMission(missionId: string) {
     try {
       const response = await fetch(`/api/missions`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ mission: missionId }), // Change to mission
+        body: JSON.stringify({ mission: missionId }),
       });
-      console.log(response);
-      
+
       if (response.ok) {
         toast.success('Mission deleted successfully');
+        setMissions((prevMissions) =>
+          prevMissions.filter((mission) => mission._id !== missionId)
+        );
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage || 'Failed to delete mission');
@@ -45,10 +51,9 @@ export default function Page() {
       toast.error('Failed to delete mission');
     }
   }
-  
-  
+
   return (
-    <div className='px-24 min-h-screen bg-gradient-to-b from-black via-teal-950 to-black'>
+    <div className='px-24 min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
       <Toaster />
       <div>
         <h1 className='text-6xl font-semibold'>
@@ -70,32 +75,34 @@ export default function Page() {
           >
             New Mission
           </a>
-          <button className='py-2 px-6 mx-4 bg-yellow-600 border border-yellow-600 rounded-lg font-semibold'>
-            Alter Mission
-          </button>
         </div>
 
-        {missions.map((mission: any, index: number) => (
-          <div
-            key={index}
-            className='w-full mt-12  p-4 border border-teal-500/30 rounded-xl '
-          >
-            <h1 className='text-3xl mb-2'>{mission.title}</h1>
-            <h2 className='text-2xl text-white/50 mb-2'>
-              Objectives: {mission.description}
-            </h2>
-            <h3 className='text-xl'>Deadline: {mission.deadline}</h3>
-            <button
-              onClick={() => {
-                setMission(mission._id);
-                deleteMission(mission._id);
-              }}
-              className='py-2 px-6 mx-4 bg-red-700 border border-red-600 rounded-lg font-semibold'
+        {missions.length > 0 ? (
+          missions.map((mission, index) => (
+            <div
+              key={index}
+              className='w-full mt-12 p-4 border border-teal-500/30 rounded-xl flex flex-row items-center justify-between'
             >
-              Abort Mission
-            </button>
-          </div>
-        ))}
+              <h1 className='text-3xl mb-2'>{mission.title}</h1>
+              <h2 className='text-2xl text-white/50 mb-2'>
+                Objectives: {mission.description}
+              </h2>
+              <h3 className='text-xl'>Deadline: {mission.deadline}</h3>
+              <div>
+                <button
+                  onClick={() => deleteMission(mission._id)}
+                  className='py-2 px-6 bg-red-700 border border-red-600 rounded-lg font-semibold'
+                >
+                  Abort
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <h1 className='mt-12 flex flex-col items-center justify-center italic'>
+            You can relax Agent, no missions for now_
+          </h1>
+        )}
       </div>
     </div>
   );
