@@ -41,13 +41,13 @@ export default function SignPage() {
   }, [user]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-green-950/60 to-black'>
       <Toaster />
       <h1 className='text-4xl my-4 font-semibold'>
-        {isLoading ? 'Encoding to Server...' : 'Become Top 1%'}
+        {isLoading ? 'Encoding to Server...' : 'SignUp  |  Become Top 1%'}
       </h1>
       <div className='flex flex-col items-start justify-start'>
-        <label htmlFor='username' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='username' className='text-2xl my-4 text-green-400'>
           Username
         </label>
         <input
@@ -57,9 +57,9 @@ export default function SignPage() {
           type='text'
           title='username'
           placeholder='username'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none font-bold'
+          className='bg-transparent py-4 px-20 pl-4 border border-green-800 rounded-lg focus:outline-none font-bold'
         />
-        <label htmlFor='Email' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='Email' className='text-2xl my-4 text-green-400'>
           Email
         </label>
         <input
@@ -69,9 +69,9 @@ export default function SignPage() {
           type='text'
           title='Email'
           placeholder='Email'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-green-800 rounded-lg focus:outline-none'
         />
-        <label htmlFor='password' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='password' className='text-2xl my-4 text-green-400'>
           Password
         </label>
         <input
@@ -81,18 +81,25 @@ export default function SignPage() {
           type='password'
           title='password'
           placeholder='password'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-green-800 rounded-lg focus:outline-none'
         />
       </div>
 
+      <a
+        href='/auth/login'
+        className='text-green-600 mt-4 mb-2'
+      >
+        Already a member? Login Here
+      </a>
+
       {isButtonDisabled ? (
-        <button className='bg-teal-950 text-teal-700 text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'>
+        <button className='bg-green-950 text-green-700 text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'>
           Disabled
         </button>
       ) : (
         <button
           onClick={onSignUp}
-          className='bg-teal-950 text-white hover:bg-black border border-teal-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
+          className='bg-green-950 text-white hover:bg-black border border-green-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
         >
           Run the Server
         </button>

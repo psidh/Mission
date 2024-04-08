@@ -41,11 +41,11 @@ export default function page() {
   }, [token]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-white-950/60 to-black'>
       <Toaster />
       <button
         onClick={verifyEmail}
-        className='bg-teal-950 text-white hover:bg-black border border-teal-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
+        className='bg-white-950 text-white hover:bg-black border border-white-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
       >
         Verify Your Identity
       </button>

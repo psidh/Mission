@@ -40,12 +40,12 @@ export default function Login() {
   }, [user]);
 
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-teal-950/60 to-black'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-blue-950/60 to-black'>
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Decrypting credentials...' : 'Welcome back Agent'}
       </h1>
       <div className='flex flex-col items-start justify-start'>
-        <label htmlFor='Email' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='Email' className='text-2xl my-4 text-blue-400'>
           Email
         </label>
         <input
@@ -55,9 +55,9 @@ export default function Login() {
           type='text'
           title='Email'
           placeholder='Email'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-blue-800 rounded-lg focus:outline-none'
         />
-        <label htmlFor='password' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='password' className='text-2xl my-4 text-blue-400'>
           Password
         </label>
         <input
@@ -67,18 +67,25 @@ export default function Login() {
           type='text'
           title='password'
           placeholder='password'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none'
+          className='bg-transparent py-4 px-20 pl-4 border border-blue-800 rounded-lg focus:outline-none'
         />
       </div>
 
+      <a
+        href='/auth/signup'
+        className='text-blue-400 mt-4 mb-2'
+      >
+        New Member? SignUp Here
+      </a>
+
       {isButtonDisabled ? (
-        <button className='bg-teal-950 text-teal-700 text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'>
+        <button className='bg-blue-950 text-blue-700 text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'>
           Disabled
         </button>
       ) : (
         <button
           onClick={onLogin}
-          className='bg-teal-950 text-white hover:bg-black border border-teal-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
+          className='bg-blue-950 text-white hover:bg-black border border-blue-900 hover:border-[#616161] text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold'
         >
           Run the Server
         </button>
