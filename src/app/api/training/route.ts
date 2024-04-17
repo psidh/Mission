@@ -78,25 +78,25 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     
-    const {Training}  = await request.json();
-    console.log("logged :" + Training);
+    const {training}  = await request.json();
+    console.log("training :" + Training);
     
 
-    if (!Training) {
+    if (!training) {
       return NextResponse.json(
         { error: "Training ID doesn't exist" },
         { status: 400 }
       );
     }
 
-    const dailyChallengeToDelete = await Training.findById(Training);
+    const trainingToDelete = await Training.findById(training);
 
-    if (!dailyChallengeToDelete) {
+    if (!trainingToDelete) {
       return NextResponse.json({ error: 'Training not found' }, { status: 404 });
     }
     
     // important
-    await Training.deleteOne(dailyChallengeToDelete);
+    await Training.deleteOne(trainingToDelete);
 
     return NextResponse.json(
       { message: 'Training deleted successfully' },

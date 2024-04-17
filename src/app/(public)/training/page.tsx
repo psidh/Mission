@@ -27,21 +27,23 @@ export default function Page() {
     fetchData();
   }, []);
 
-  async function deleteDailyChallenges(missionId: string) {
+  async function deleteTraining(trainingId: string) {
     try {
+      console.log(trainingId);
+      
       const response = await fetch(`/api/training`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ training: missionId }),
+        body: JSON.stringify({training: trainingId} ),
       });
 
       if (response.ok) {
         toast.success('training deleted successfully');
         setTrainings((prevTrainings) =>
           prevTrainings.filter(
-            (training) => training._id !== missionId
+            (training) => training._id !== trainingId
           )
         );
       } else {
@@ -87,7 +89,7 @@ export default function Page() {
               <h3 className='text-xl'>Deadline: {training.deadline}</h3>
               <div>
                 <button
-                  onClick={() => deleteDailyChallenges(training._id)}
+                  onClick={() => deleteTraining(training._id)}
                   className='py-2 px-6 bg-red-700 border border-red-600 rounded-lg font-semibold'
                 >
                   Abort
