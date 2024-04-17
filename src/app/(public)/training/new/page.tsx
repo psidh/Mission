@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
-  const [dailyChallenge, setDailyChallenge] = useState({
+  const [training, setTraining] = useState({
     title: '',
     description: '',
   });
@@ -17,29 +17,26 @@ export default function Login() {
   const addMission = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        '/api/daily-challenges',
-        dailyChallenge
-      );
+      const response = await axios.post('/api/training', training);
       console.log(response.data);
       toast.success('Mission Added Successfully');
-      router.push('/daily-challenges');
+      router.push('/training');
     } catch (error) {
-      console.error('Failed to add dailyChallenge:', error);
-      toast.error('Failed to add dailyChallenge');
+      console.error('Failed to add training:', error);
+      toast.error('Failed to add training');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const { title, description } = dailyChallenge;
+    const { title, description } = training;
     if (title && description) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
-  }, [dailyChallenge]);
+  }, [training]);
 
   return (
     <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-red-950/60 to-black'>
@@ -52,9 +49,9 @@ export default function Login() {
         </label>
         <input
           id='title'
-          value={dailyChallenge.title}
+          value={training.title}
           onChange={(e) =>
-            setDailyChallenge({ ...dailyChallenge, title: e.target.value })
+            setTraining({ ...training, title: e.target.value })
           }
           type='text'
           title='Title'
@@ -66,10 +63,10 @@ export default function Login() {
         </label>
         <textarea
           id='description'
-          value={dailyChallenge.description}
+          value={training.description}
           onChange={(e) =>
-            setDailyChallenge({
-              ...dailyChallenge,
+            setTraining({
+              ...training,
               description: e.target.value,
             })
           }

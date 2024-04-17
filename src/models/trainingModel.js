@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const dailyChallengeSchema = new mongoose.Schema({
+const trainingSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Please provide a title"],
@@ -24,6 +24,6 @@ const dailyChallengeSchema = new mongoose.Schema({
     }
 });
 
-const DailyChallenge = mongoose.models.dailychallenges || mongoose.model("dailychallenges", dailyChallengeSchema);
+const Training = mongoose.models.trainings || mongoose.model("trainings", trainingSchema);
 
-export default DailyChallenge;
+export default Training;

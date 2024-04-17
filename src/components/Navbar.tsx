@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import axios from 'axios';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
@@ -12,7 +12,7 @@ export default function Navbar() {
       console.log(response);
 
       toast.success('Logged out successfully');
-      router.push('/auth/login')
+      router.push('/auth/login');
     } catch (error) {}
   };
   return (
@@ -31,7 +31,7 @@ export default function Navbar() {
             Missions
           </Link>
           <Link
-            href={'/daily-challenges'}
+            href={'/training'}
             className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
           >
             Daily Challenges
