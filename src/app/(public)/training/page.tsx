@@ -57,7 +57,7 @@ export default function Page() {
   }
 
   return (
-    <div className='px-24 bg-gradient-to-b from-black via-red-950/60 to-black'>
+    <div className='page bg-gradient-to-b from-black via-red-950/60 to-black'>
       <Toaster />
       <div>
         <h1 className='text-6xl font-semibold'>
@@ -72,7 +72,7 @@ export default function Page() {
             href='/training/new'
             className='py-2 px-6 bg-red-700 hover:bg-red-800 border border-red-600 rounded-lg font-semibold'
           >
-            New Trainings
+            New Training
           </a>
         </div>
 

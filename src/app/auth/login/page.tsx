@@ -16,7 +16,6 @@ export default function Login() {
   const onLogin = async () => {
     try {
       setLoading(true);
-      toast.loading('Retriving Data...');
       const response = await axios({
         method: 'post',
         url: '/api/users/login',

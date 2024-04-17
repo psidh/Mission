@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <div className='bg-black text-[#b7b7b7] flex flex-col justify-center items-center'>
       <div className='mt-12 mx-8 w-[80%]'>
-        <h1 className='text-6xl font-bold mb-8 text-teal-400'>
-          Welcome, Agent
+        <h1 className='text-6xl font-bold mb-8 text-green-400'>
+          Welcome to Mission, Agent
         </h1>
         <div>
           <p className='text-xl mb-4'>
@@ -13,7 +13,7 @@ export default function Home() {
             missions,{' '}
             <span className='bg-[#650000] rounded-lg px-1'>abort</span> them if
             necessary, and mark them as{' '}
-            <span className='bg-teal-900 rounded-lg px-1'>accomplished</span>{' '}
+            <span className='bg-green-900 rounded-lg px-1'>accomplished</span>{' '}
             once you've successfully executed them.
           </p>
           <p className='text-xl mb-8'>
@@ -36,7 +36,7 @@ export default function Home() {
           </p>
           <div className='flex justify-center'>
             <Link href='/missions'>
-              <p className='py-3 px-8 hover:bg-teal-700 bg-black border hover:border-black border-teal-800 text-white font-semibold rounded-lg shadow-md transition duration-300'>
+              <p className='py-3 px-8 hover:bg-green-700 bg-black border hover:border-black border-green-800 text-white font-semibold rounded-lg shadow-md transition duration-300'>
                 View Missions
               </p>
             </Link>
