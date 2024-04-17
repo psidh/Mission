@@ -34,7 +34,7 @@ export default function Navbar() {
             href={'/training'}
             className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
           >
-            Daily Challenges
+            Training
           </Link>
           <Link
             href={'/streak'}
