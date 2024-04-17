@@ -80,7 +80,7 @@ export default function Page() {
           trainings.map((training, index) => (
             <div
               key={index}
-              className='w-full mt-12 p-4 border border-red-500/30 rounded-xl flex flex-row items-center justify-between'
+              className='w-full mt-12 p-4 border border-green-500/30 rounded-xl flex flex-col items-center justify-between'
             >
               <h1 className='text-3xl mb-2'>{training.title}</h1>
               <h2 className='text-2xl text-white/50 mb-2'>
@@ -90,7 +90,7 @@ export default function Page() {
               <div>
                 <button
                   onClick={() => deleteTraining(training._id)}
-                  className='py-2 px-6 bg-red-700 border border-red-600 rounded-lg font-semibold'
+                  className='py-2 px-6 bg-red-700 border border-red-600 rounded-lg font-semibold mt-2'
                 >
                   Abort
                 </button>
