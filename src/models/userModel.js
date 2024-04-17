@@ -27,9 +27,9 @@ const userSchema = new mongoose.Schema({
     forgotPasswordTokenExpiry: Date,
     verifyToken: String,
     verifyTokenExpiry: Date,
-    missions: [{
+    trainings: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Mission',
+        ref: 'Training',
     }]
 })
 

@@ -1,6 +1,6 @@
 import connect from '@/dbConfig/dbConfig';
 import { getDataFromToken } from '@/helpers/getDataFromToken';
-import DailyChallenge from "@/models/dailyChallengeModel";
+import Training from "@/models/trainingModel";
 import User from '@/models/userModel';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    const missions = await DailyChallenge.find({ user: userID });
+    const missions = await Training.find({ user: userID });
     
 
     return NextResponse.json({ data: missions }, { status: 200 });
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    const newDailyChallenge = new DailyChallenge({
+    const newTraining = new Training({
       title,
       description,
       deadline: new Date(),
@@ -62,10 +62,10 @@ export async function POST(request: NextRequest) {
       user: user._id,
     });
 
-    await newDailyChallenge.save();
+    await newTraining.save();
 
     return NextResponse.json(
-      { message: 'Daily Challenge added successfully' },
+      { message: 'Training added successfully' },
       { status: 200 }
     );
   } catch (error: any) {
@@ -78,32 +78,32 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     
-    const {dailyChallenge}  = await request.json();
-    console.log("logged :" + dailyChallenge);
+    const {Training}  = await request.json();
+    console.log("logged :" + Training);
     
 
-    if (!dailyChallenge) {
+    if (!Training) {
       return NextResponse.json(
-        { error: "dailyChallenge ID doesn't exist" },
+        { error: "Training ID doesn't exist" },
         { status: 400 }
       );
     }
 
-    const dailyChallengeToDelete = await DailyChallenge.findById(dailyChallenge);
+    const dailyChallengeToDelete = await Training.findById(Training);
 
     if (!dailyChallengeToDelete) {
-      return NextResponse.json({ error: 'dailyChallenge not found' }, { status: 404 });
+      return NextResponse.json({ error: 'Training not found' }, { status: 404 });
     }
     
     // important
-    await DailyChallenge.deleteOne(dailyChallengeToDelete);
+    await Training.deleteOne(dailyChallengeToDelete);
 
     return NextResponse.json(
-      { message: 'dailyChallenge deleted successfully' },
+      { message: 'Training deleted successfully' },
       { status: 200 }
     );
   } catch (error: any) {
-    console.error('Error deleting dailyChallenge:', error.message);
+    console.error('Error deleting Training:', error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
