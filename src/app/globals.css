@@ -30,4 +30,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .linker {
+    @apply py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm
+  }
+
+  .page{
+    @apply px-12 md:px-24
+  }
 }

@@ -3,6 +3,8 @@ import axios from 'axios';
 import Link from 'next/link';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { FiMenu } from 'react-icons/fi';
 
 export default function Navbar() {
   const router = useRouter();
@@ -15,31 +17,28 @@ export default function Navbar() {
       router.push('/auth/login');
     } catch (error) {}
   };
+
+  const [isOpen, setOpen] = useState(false);
+
+  const openNav = () => {
+    setOpen(!isOpen);
+  };
   return (
     <div>
       <Toaster />
-      <div className='bg-transparent px-24 backdrop-blur-xl bg-opacity-20 flex justify-between py-12 text-lg'>
-        <h1 className='flex justify-between items-center'>Intercept</h1>
-        <div className='space-x-8 flex justify-between items-center'>
-          <Link href={'/home'} className=''>
+      <div className=' w-full flex justify-between items-center px-12 py-12 md:py-12 md:px-24 text-lg'>
+        <h1 className=''>Mission</h1>
+        <div className='justify-center space-x-8  hidden lg:flex items-center'>
+          <Link href={'/home'} className='linker'>
             Home
           </Link>
-          <Link
-            href={'/missions'}
-            className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
-          >
+          <Link href={'/missions'} className='linker'>
             Missions
           </Link>
-          <Link
-            href={'/training'}
-            className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
-          >
+          <Link href={'/training'} className='linker'>
             Training
           </Link>
-          <Link
-            href={'/bullets'}
-            className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
-          >
+          <Link href={'/bullets'} className='linker'>
             Bullets
           </Link>
           <button
@@ -49,7 +48,30 @@ export default function Navbar() {
             Logout
           </button>
         </div>
+        <FiMenu className='flex lg:hidden' onClick={openNav} />
       </div>
+      {isOpen && (
+        <div className='flex flex-col lg:hidden justify-between items-start space-y-8 px-8'>
+          <Link href={'/home'} className=''>
+            Home
+          </Link>
+          <Link href={'/missions'} className='linker'>
+            Missions
+          </Link>
+          <Link href={'/training'} className='linker'>
+            Training
+          </Link>
+          <Link href={'/bullets'} className='linker'>
+            Bullets
+          </Link>
+          <button
+            onClick={logout}
+            className='py-2 px-6 rounded-lg bg-red-700 border border-white/20 text-white text-sm'
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -42,12 +42,12 @@ export default function Login() {
   }, [mission]);
 
   return (
-    <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-teal-950/60 to-black'>
+    <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-green-950/60 to-black'>
       <h1 className='text-4xl my-4 font-semibold'>
         {isLoading ? 'Adding Mission...' : 'New Mission'}
       </h1>
-      <div className='flex flex-col items-start justify-start w-[65%]'>
-        <label htmlFor='title' className='text-2xl my-4 text-teal-400'>
+      <div className='flex flex-col items-start justify-start w-[80%] md:w-[65%]'>
+        <label htmlFor='title' className='text-2xl my-4 text-green-400'>
           Title
         </label>
         <input
@@ -57,9 +57,9 @@ export default function Login() {
           type='text'
           title='Title'
           placeholder='Title'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none w-full'
+          className='bg-transparent py-4 px-20 pl-4 border border-green-800 rounded-lg focus:outline-none w-full'
         />
-        <label htmlFor='description' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='description' className='text-2xl my-4 text-green-400'>
           Description
         </label>
         <textarea
@@ -72,9 +72,9 @@ export default function Login() {
           cols={25}
           title='Description'
           placeholder='Description'
-          className='bg-transparent py-4 px-20 pl-4 border border-teal-800 rounded-lg focus:outline-none w-full'
+          className='bg-transparent py-4 px-20 pl-4 border border-green-800 rounded-lg focus:outline-none w-full'
         />
-        <label htmlFor='deadline' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='deadline' className='text-2xl my-4 text-green-400'>
           Deadline
         </label>
         <input
@@ -84,16 +84,16 @@ export default function Login() {
           type='date'
           title='Deadline'
           placeholder='Deadline'
-          className='bg-transparent py-4 px-20 border border-teal-800 rounded-lg focus:outline-none w-full'
+          className='bg-transparent py-4 px-20 border border-green-800 rounded-lg focus:outline-none w-full'
         />
-        <label htmlFor='category' className='text-2xl my-4 text-teal-400'>
+        <label htmlFor='category' className='text-2xl my-4 text-green-400'>
           Category
         </label>
         <select
           id='category'
           value={mission.category}
           onChange={(e) => setMission({ ...mission, category: e.target.value })}
-          className='bg-transparent py-4 px-20 border border-teal-800 rounded-lg focus:outline-none w-full'
+          className='bg-transparent py-4 px-20 border border-green-800 rounded-lg focus:outline-none w-full'
         >
           <option value=''>Select Category</option>
           <option value='Web'>Web</option>
@@ -111,8 +111,8 @@ export default function Login() {
         disabled={isButtonDisabled}
         className={`${
           isButtonDisabled
-            ? 'bg-teal-950 text-teal-700 cursor-not-allowed'
-            : 'bg-teal-950 text-white hover:bg-black border border-teal-900 hover:border-[#616161]'
+            ? 'bg-green-950 text-green-700 cursor-not-allowed'
+            : 'bg-green-950 text-white hover:bg-black border border-green-900 hover:border-[#616161]'
         } text-center py-4 px-20 transition-all duration-200 rounded-lg my-4 font-bold`}
       >
         {isLoading ? 'Adding...' : 'Add Mission'}

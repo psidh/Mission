@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import Mission from '@/interfaces/Mission';
 
-
 export default function Page() {
   const [missions, setMissions] = useState<Mission[]>([]);
 
@@ -17,7 +16,7 @@ export default function Page() {
             ...mission,
             deadline: new Date(mission.deadline).toLocaleDateString(),
           }))
-        );      
+        );
       } catch (error) {
         console.error('Error fetching missions:', error);
       }
@@ -77,7 +76,7 @@ export default function Page() {
   }
 
   return (
-    <div className='px-24 bg-gradient-to-b from-black via-teal-950/60 to-black'>
+    <div className='page bg-gradient-to-b from-black via-green-950/60 to-black'>
       <Toaster />
       <div>
         <h1 className='text-6xl font-semibold'>
@@ -95,7 +94,7 @@ export default function Page() {
         <div className='flex items-start justify-start mt-12'>
           <a
             href='/missions/new'
-            className='py-2 px-6 bg-teal-700 border border-teal-600 rounded-lg font-semibold'
+            className='py-2 px-6 bg-green-700 border border-green-600 rounded-lg font-semibold'
           >
             New Mission
           </a>
@@ -105,11 +104,11 @@ export default function Page() {
           missions.map((mission, index) => (
             <div
               key={index}
-              className='w-full mt-12 p-4 border border-teal-500/30 rounded-xl flex flex-col items-center justify-between'
+              className='w-full mt-12 p-4 border border-green-500/30 rounded-xl flex flex-col items-center justify-between'
             >
               <h1 className='text-3xl mb-2'>{mission.title}</h1>
               <h2 className='text-xl text-white/50 mb-2'>
-              {mission.description}
+                {mission.description}
               </h2>
               <h3 className='text-xl'>Deadline: {mission.deadline}</h3>
               <h4 className='text-xl'>Status: {mission.isDone}</h4>

@@ -41,11 +41,11 @@ export default function Login() {
   return (
     <div className='flex flex-col items-center justify-center py-12 bg-gradient-to-b from-black via-red-950/60 to-black'>
       <h1 className='text-4xl my-4 font-semibold'>
-        {isLoading ? 'Adding Mission...' : 'New Daily Challenge'}
+        {isLoading ? 'Adding Mission...' : 'New Training'}
       </h1>
-      <div className='flex flex-col items-start justify-start w-[65%]'>
+      <div className='flex flex-col items-start justify-start w-[80%] md:w-[65%]'>
         <label htmlFor='title' className='text-2xl my-4 text-red-400'>
-          Title
+          Training
         </label>
         <input
           id='title'

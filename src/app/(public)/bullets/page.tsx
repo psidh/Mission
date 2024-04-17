@@ -3,7 +3,7 @@ export default function Page() {
     <div className='px-24 bg-gradient-to-b from-black via-yellow-900/60 to-black'>
       <div>
         <h1 className='text-6xl font-semibold'>
-          Bulletstreak<span className='animate-pulse font-extrabold'>_</span>
+          Bullets<span className='animate-pulse font-extrabold'>_</span>
         </h1>
         <p className='text-xl text-[#999999] mt-12'>
           Your commitments to being an assassin is your lifeline Agent!
@@ -16,10 +16,10 @@ export default function Page() {
         </p>
         <div className='flex items-start justify-start mt-12'>
           <a
-            href='/missions/new'
+            href='/bullets/new'
             className='py-2 px-6 bg-amber-700 border border-amber-600 rounded-lg font-semibold'
           >
-            New Mission
+            New Bullet
           </a>
         </div>
       </div>
