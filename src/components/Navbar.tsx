@@ -37,10 +37,10 @@ export default function Navbar() {
             Training
           </Link>
           <Link
-            href={'/streak'}
+            href={'/bullets'}
             className='py-2 px-6 rounded-lg bg-[#212121] border border-white/20 text-white text-sm'
           >
-            Streak
+            Bullets
           </Link>
           <button
             onClick={logout}
