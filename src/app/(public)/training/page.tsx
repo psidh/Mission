@@ -80,7 +80,7 @@ export default function Page() {
           trainings.map((training, index) => (
             <div
               key={index}
-              className='w-full mt-12 p-4 border border-green-500/30 rounded-xl flex flex-col items-center justify-between'
+              className='w-full mt-12 p-4 border border-red-500/30 rounded-xl flex items-center justify-between'
             >
               <h1 className='text-3xl mb-2'>{training.title}</h1>
               <h2 className='text-2xl text-white/50 mb-2'>
