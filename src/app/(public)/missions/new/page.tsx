@@ -95,14 +95,14 @@ export default function Login() {
           onChange={(e) => setMission({ ...mission, category: e.target.value })}
           className='bg-transparent py-4 px-20 border border-green-800 rounded-lg focus:outline-none w-full'
         >
-          <option value=''>Select Category</option>
-          <option value='Web'>Web</option>
-          <option value='Cloud'>Cloud</option>
-          <option value='DevOps'>DevOps</option>
-          <option value='ML'>ML</option>
-          <option value='App'>App</option>
-          <option value='IT'>IT</option>
-          <option value='Security'>Security</option>
+          <option className='text-black font-semibold' value=''>Select Category</option>
+          <option className='text-black' value='Web'>Web</option>
+          <option className='text-black' value='Cloud'>Cloud</option>
+          <option className='text-black' value='DevOps'>DevOps</option>
+          <option className='text-black' value='ML'>ML</option>
+          <option className='text-black' value='App'>App</option>
+          <option className='text-black' value='IT'>IT</option>
+          <option className='text-black' value='Security'>Security</option>
         </select>
       </div>
 
