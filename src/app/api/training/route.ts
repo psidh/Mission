@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    const { title, description, isDone } = body;
+    const { title, description, priority, isDone } = body;
 
     const user = await User.findById(userID);
 
@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
     const newTraining = new Training({
       title,
       description,
+      priority,
       deadline: new Date(),
       isDone: isDone || false,
       user: user._id,

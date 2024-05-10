@@ -4,10 +4,12 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
+
 export default function Login() {
   const [training, setTraining] = useState({
     title: '',
     description: '',
+    priority : ''
   });
 
   const router = useRouter();
@@ -75,7 +77,17 @@ export default function Login() {
           title='Description'
           placeholder='Description'
           className='bg-transparent py-4 px-20 pl-4 border border-red-800 rounded-lg focus:outline-none w-full'
-        />
+        />  
+
+          <p className='text-2xl my-4 text-red-400 flex justify-center items-center gap-6 '><span>Priority :</span>{training.priority !== "" && <PriorityTag txt={training.priority} setTraining={setTraining} priority={training.priority} />}</p>
+        
+          <div className='w-full rounded-lg border border-red-800 px-20 py-4 flex justify-center items-start gap-6 flex-wrap'>
+            {
+              PriorityList.map((item, index) => <PriorityTag key={index} txt={item} setTraining={setTraining} priority={training.priority}/>)
+            }
+            
+          </div>
+
       </div>
 
       <button
@@ -92,3 +104,18 @@ export default function Login() {
     </div>
   );
 }
+
+
+interface PriorityProps {
+  txt : string,
+  setTraining: React.Dispatch<React.SetStateAction<{title: string; description: string; priority: string;}>>,
+  priority : string
+}
+
+const PriorityTag: React.FC<PriorityProps> = ({txt, setTraining, priority}) => {
+  return (
+    <p onClick={() => setTraining(prev => ({...prev, priority : txt}))} className= {`w-fit rounded-lg bg-white/20 px-4 py-1 cursor-pointer hover:scale-105 hover:transition-all hover:duration-300 hover:ring-1 hover:ring-red-300 text-white text-sm ${(priority === txt) || (priority === "") ? '' : 'opacity-50'}` }><span>{txt}</span></p>
+  )
+}
+
+const PriorityList = ["Important", "Urgent", "Not Urgent", "Not Important", "Mandatory"];
