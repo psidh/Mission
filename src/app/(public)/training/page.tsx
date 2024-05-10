@@ -80,13 +80,14 @@ export default function Page() {
           trainings.map((training, index) => (
             <div
               key={index}
-              className='w-full mt-12 p-4 border border-red-500/30 rounded-xl flex items-center justify-between'
+              className='w-full mt-12 p-4 border border-red-500/30 rounded-xl flex items-center justify-between gap-2'
             >
               <h1 className='text-3xl mb-2'>{training.title}</h1>
               <h2 className='text-2xl text-white/50 mb-2'>
                 Objectives: {training.description}
               </h2>
               <h3 className='text-xl'>Deadline: {training.deadline}</h3>
+              <p className= {`w-fit rounded-lg bg-white/20 px-4 py-1 cursor-pointer  text-white text-base`}><span>{training.priority}</span></p>
               <div>
                 <button
                   onClick={() => deleteTraining(training._id)}

@@ -10,6 +10,10 @@ const trainingSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a description"],
     },
+    priority : {
+        type : String,
+        required: [true, "Please provide a priority"],
+    },
     deadline: {
         type: Date,
         required: [true, "Please provide a deadline"],
